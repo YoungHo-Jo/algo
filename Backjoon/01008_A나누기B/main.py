@@ -1,0 +1,5 @@
+inp = input().split()
+lhs = int(inp[0])
+rhs = int(inp[1])
+result = float(lhs/rhs)
+print(result)

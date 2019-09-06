@@ -1,0 +1,30 @@
+# exclude files not having extension
+*
+!/**/
+!*.*
+
+# VS code
+.vscode
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# java
+*.class
+
+# private
+/private
+
+# output
+*.out
+
+# C/C++
+*.ii
+
+# vim
+*.swp
+
+# iCloud
+*.icloud

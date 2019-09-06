@@ -1,0 +1,8 @@
+inp = input().split()
+lhs = int(inp[0])
+rhs = int(inp[1])
+print(lhs + rhs)
+print(lhs - rhs)
+print(lhs * rhs)
+print(int(lhs/rhs))
+print(lhs%rhs)

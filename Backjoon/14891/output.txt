@@ -1,0 +1,9 @@
+Enter Gaer states: 
+done
+Enter the number of operations: 
+done
+Enter Operations: 
+done
+ hi 
+ hi 
+13
