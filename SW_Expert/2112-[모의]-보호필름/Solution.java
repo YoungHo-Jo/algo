@@ -1,6 +1,6 @@
 /*
   start: 2019.10.18 19:52
-  end: 
+  end: 2019.10.18 23:19
 */
 
 import java.io.BufferedReader;
@@ -17,7 +17,7 @@ import java.util.ArrayDeque;
 class Solution {
   
   static int[][] cover = new int[13][20];
-  static int K, D, W;
+  static int K, D, W, min;
 
   public static void main(String[] args) throws IOException {
     // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -56,7 +56,13 @@ class Solution {
         }
       }
 
-      int ans = solve();
+      min = D;
+
+      int[][] copied = Arrays.stream(cover)
+        .map(int[]::clone)
+        .toArray(int[][]::new);
+
+      int ans = solveDfs(copied, 0, 0);
       System.out.println("#" + t + " " + ans);
     }
   }
@@ -70,6 +76,30 @@ class Solution {
       )
       .collect(Collectors.joining("\n"))
     );
+  }
+
+  static int solveDfs(int[][] current, int n, int row) {
+    if(check(current)) return n;
+    if(row >= D) return D;
+    if(n >= min) return min;
+
+    int ret = D;
+
+    inject(current, row, 0);
+    ret = Math.min(solveDfs(current, n + 1, row + 1), ret);
+    inject(current, row, 1);
+    ret = Math.min(solveDfs(current, n + 1, row + 1), ret);
+    recover(current, row); 
+    ret = Math.min(solveDfs(current, n, row + 1), ret);
+    
+    min = Math.min(min, ret);
+    return min;
+  }
+
+  static void recover(int[][] to, int row)  {
+    for(int j = 0; j < W; j++) {
+      to[row][j] = cover[row][j];
+    }
   }
 
   static int solve() {
